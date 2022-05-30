@@ -1,7 +1,6 @@
 {
   "name": "men-stack",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./index.js"
@@ -11,6 +10,17 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "joi": "^17.6.0",
     "uuid": "^8.3.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kikemaya/api-rest-nme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kikemaya/api-rest-nme/issues"
+  },
+  "homepage": "https://github.com/kikemaya/api-rest-nme#readme",
+  "description": ""
 }
