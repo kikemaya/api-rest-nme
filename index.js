@@ -27,7 +27,17 @@ const validarUsuario = (nom) => {
 
 // mètodo use, para montar middlewares. En este caso usè json(),
 // porque voy a recibir una peticiòn post y necesito hacer un parse json de lo que me manden
-app.use(express.json())
+app.use(express.json())//body en un formato json
+
+app.use((req, res, next) => {
+    console.log('Logging...')
+    next()
+})
+
+app.use((req, res, next) => {
+    console.log('Autenticando...')
+    next()
+})
 
 app.get("/", (req, res) => res.send("Hola desde express"))
 
@@ -92,7 +102,7 @@ app.delete('/api/usuarios/:id', (req, res) => {
     if (!usuario) return res.status(404).send('El usuario no fue encontrado...')
 
     const index = usuarios.indexOf(usuario)
-    usuarios.splice(index, 1)
+    usuarios.splice(index,  1)
 
     return res.send(usuario)
 })
