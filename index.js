@@ -3,6 +3,8 @@
 require('dotenv').config()
 const express = require("express")
 
+const logger = require('./logger')
+
 //validaciones con la libreria Join
 const Joi = require('joi')
 const { v4: uuidv4 } = require('uuid')
@@ -27,12 +29,13 @@ const validarUsuario = (nom) => {
 
 // mètodo use, para montar middlewares. En este caso usè json(),
 // porque voy a recibir una peticiòn post y necesito hacer un parse json de lo que me manden
-app.use(express.json())//body en un formato json
+//acepta las peticiones del body en un formato json
+app.use(express.json())
 
-app.use((req, res, next) => {
-    console.log('Logging...')
-    next()
-})
+//acepta las peticiones del body enviadas por un form
+app.use(express.urlencoded({ extended: true })) 
+
+app.use(logger)
 
 app.use((req, res, next) => {
     console.log('Autenticando...')
