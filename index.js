@@ -1,9 +1,16 @@
 "use strict"
 
+const debug = require('debug')('app:inicio')
+
+// const dbDebug = require('debug')('app:db')
+
 require('dotenv').config()
 const express = require("express")
 
-const logger = require('./logger')
+const config = require("config")
+
+// const logger = require('./logger')
+const morgan = require('morgan')
 
 //validaciones con la libreria Join
 const Joi = require('joi')
@@ -35,12 +42,23 @@ app.use(express.json())
 //acepta las peticiones del body enviadas por un form
 app.use(express.urlencoded({ extended: true })) 
 
-app.use(logger)
+//me permite publicar archivos estàticos
+app.use(express.static('public'))
 
-app.use((req, res, next) => {
-    console.log('Autenticando...')
-    next()
-})
+//Configuracion de entornos
+console.log('Aplicaciòn: ' + config.get('nombre'))
+console.log('BD Server: ' + config.get('configDB.host'))
+
+//Uso de un middleware de 3ro. Morgan, usarlo en modo dev
+
+if (app.get('env') === 'development') {
+    app.use(morgan('tiny'))
+    // console.log('Morgan habilitado')
+    debug('Morgan està habilitado')
+}
+
+//Trabajos con la db
+debug('Conectando con la db...')
 
 app.get("/", (req, res) => res.send("Hola desde express"))
 

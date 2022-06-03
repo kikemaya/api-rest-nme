@@ -3,17 +3,20 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start" : "node ./index.js",
     "dev": "nodemon ./index.js"
   },
   "author": "Enrique Maya <enrique.mg.cd@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "config": "^3.3.7",
+    "debug": "^4.3.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "joi": "^17.6.0",
+    "morgan": "^1.10.0",
     "uuid": "^8.3.2"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kikemaya/api-rest-nme.git"
